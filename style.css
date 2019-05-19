@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    text-align: center;
+}
+
+input, label {
+    display: block;
+}
+
+input {
+    padding: 3px;
+    margin: 5px;
+}
+
+.destinationForm, input {
+    display: inline-block;
+    text-align: center;
+}
+
+div {
+    margin: 10px;
+}
+
+section {
+    width: 100%;
+}
+
+button {
+    padding: 5px;
+    margin: 20px;
+}
+
+.dateForm, .startingPoint {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+h3 {
+    margin: 1%;
+}
+
+.airports {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

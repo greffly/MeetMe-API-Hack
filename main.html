@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>MeetMe</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Poiret+One" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="title">
+        <h1>MeetMe</h1>
+        <h2>Connecting Friends, Family, and Colleagues in a Common Destination</h2>
+    </header>
+    <form class="flightSearchForm">
+        <section class="destinationForm">
+            <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
+            <input class="destination" type="text" placeholder="Austin, TX" value="AUS">
+        </section>
+        <h3>When Are You Going?</h3>
+        <section class="dateForm">
+            <div class="formSection">
+                <label>Leaving On</label>
+                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy">
+            </div>
+            <div class="formSection">
+                <label>Coming Back</label>
+                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy">
+            </div>
+        </section>
+        <h3 class="originatingAirport">Starting Airports</h3>
+        <section class="startingPoint">
+            <div class="formSection">
+                <label>Traveler 1</label>
+                <input class="airport0" type="text" placeholder="SFO" value="SFO">
+            </div>
+            <div class="formSection">
+                <label>Traveler 2</label>
+                <input class="airport1" type="text" placeholder="PDX" value="PDX">
+            </div>
+        </section>
+        <button type="submit">Let's Go!</button>
+    </form>
+    <section class="flightSearchResults">
+        <ul class="flightResultsList">
+        </ul>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
