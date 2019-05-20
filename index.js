@@ -10,7 +10,7 @@ const options = {
 
 function displayFlightResults(responseJson) {
     $('.flightSearchResults').empty();
-    console.log('displaying json message: ' + responseJson.length);
+    console.log(responseJson);
     for (let i = 0; i < responseJson.length; i++) {
         $('.flightSearchResults').append(
             `<p>${responseJson.data[i].intins[0]}</p>`
