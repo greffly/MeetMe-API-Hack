@@ -10,10 +10,19 @@ const options = {
 
 function displayFlightResults(responseJson) {
     $('.flightSearchResults').empty();
-    console.log(responseJson);
+    var string1 = "";
+    var object1 = responseJson;
+    console.log(object1.legs);
+    //var object2 = property1 in object1;
+    for (var leg in object1.legs) {
+        //string1 += object1[leg];
+        //console.log(string1);
+    }
+    //console.log(object1[property1]);
+    //console.log(object1);
     for (let i = 0; i < responseJson.length; i++) {
         $('.flightSearchResults').append(
-            `<p>${responseJson.data[i].intins[0]}</p>`
+            `<p>${responseJson.intins[0]}</p>`
         )
     };
 }
