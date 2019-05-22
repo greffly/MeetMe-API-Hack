@@ -12,17 +12,20 @@ function displayFlightResults(responseJson) {
     $('.flightSearchResults').empty();
     var string1 = "";
     var object1 = responseJson;
-    console.log(object1.legs);
+    //console.log(object1.legs.arrive);
     //var object2 = property1 in object1;
     for (var leg in object1.legs) {
-        //string1 += object1[leg];
-        //console.log(string1);
+        //console.log(object1.legs[leg].arrive_iso);
+        let allLegs = object1.legs[leg];
+        let oneLeg = Object.values(allLegs)[3];
+        let theLeg = Object.keys(oneLeg);
+        console.log(oneLeg);
     }
-    //console.log(object1[property1]);
-    //console.log(object1);
-    for (let i = 0; i < responseJson.length; i++) {
+
+    for (let i = 0; i < 10; i++) {
+        console.log('for loop is working:');
         $('.flightSearchResults').append(
-            `<p>${responseJson.intins[0]}</p>`
+            `<p>${oneLeg[i]}</p>`
         )
     };
 }
@@ -57,9 +60,9 @@ function getFlightResults() {
     const returnDate = endDateFormat();
     const params = {
         from0: departureLocation0,
-        from1: departureLocation1,
+        //from1: departureLocation1,
         to0: destination,
-        to1: destination,
+        //to1: destination,
         date0: departureDate,
         date1: returnDate,
         pax: 1,
