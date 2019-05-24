@@ -48,3 +48,47 @@ h3 {
     flex-direction: column;
     justify-content: center;
 }
+
+.flight1 {
+    list-style: none;
+    text-align: left;
+}
+
+.flight2 {
+    list-style: none;
+    text-align: left;
+}
+
+.flightResults1, .flightResults2 {
+    padding: 5px;
+    border: 3px black;
+    display: inline-block;
+    width: 45%;
+}
+
+.flightResultsTitle {
+    border: 3px black;
+}
+
+li {
+    list-style: none;
+}
+
+ul li:nth-of-type(1n+10) {
+    display: none;
+}
+
+.destinationPhotoList {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+img {
+    width: 95%;
+    height: 100%;
+}
+
+h4 {
+    margin: 0;
+}

@@ -17,36 +17,49 @@
     <form class="flightSearchForm">
         <section class="destinationForm">
             <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
-            <input class="destination" type="text" placeholder="Austin, TX" value="AUS">
+            <input class="destination" type="text" placeholder="Austin" value="SFO">
         </section>
         <h3>When Are You Going?</h3>
         <section class="dateForm">
             <div class="formSection">
                 <label>Leaving On</label>
-                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" value="2019-05-22">
+                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" value="2019-05-27">
             </div>
             <div class="formSection">
                 <label>Coming Back</label>
-                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" value="2019-05-25">
+                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" value="2019-05-29">
             </div>
         </section>
         <h3 class="originatingAirport">Starting Airports</h3>
         <section class="startingPoint">
             <div class="formSection">
                 <label>Traveler 1</label>
-                <input class="airport0" type="text" placeholder="SFO" value="SFO">
+                <input class="airport0" type="text" placeholder="SFO" value="LAX">
             </div>
             <div class="formSection">
                 <label>Traveler 2</label>
-                <input class="airport1" type="text" placeholder="PDX">
+                <input class="airport1" type="text" placeholder="PDX" value="PDX">
             </div>
         </section>
         <button type="submit">Let's Go!</button>
     </form>
     <section class="flightSearchResults">
-        <ul class="flightResultsList">
+        <section class="flightResults1">
+            <h3 class="flightResultsTitle">Flight 1 Results:</h3>
+            <ul class="flightResultsList1">
+            </ul>
+        </section>
+        <section class="flightResults2">
+            <h3 class="flightResultsTitle">Flight 2 Results:</h3>
+            <ul class="flightResultsList2">
+            </ul>
+        </section>
+    </section>
+    <section class="destinationPhotos">
+        <ul class="destinationPhotoList">
         </ul>
     </section>
     <script src="index.js"></script>
+    <script src="photoAPI.js"></script>
 </body>
 </html>
