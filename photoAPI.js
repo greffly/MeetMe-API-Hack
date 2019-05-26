@@ -21,6 +21,17 @@ function displayPhotos(responseJson) {
 
 function getPhotos() {
     const destination = $('.destination').val();
+    //how do I find the destination airport code in the dataStore and translate it to the city name?
+    //const destinationName = 
+    console.log(Object.values(airportCodeData));
+    for(let i=0; i < airportCodeData.length; i++) {
+        for(value in airportCodeData[i]) {
+            if(airportCodeData[i][value]==destination) {
+                //results.push(paramsStore[i][key]);
+                console.log('params store key working: ', airportCodeData[i][key]);
+            }
+        }
+    }
     const params = {
         "client_id": photoApiKey,
         query: destination,

@@ -3,6 +3,8 @@
 const flightSearchURL = "https://apidojo-hipmunk-v1.p.rapidapi.com/flights/create-session";
 const flightApiKey = "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5";
 
+let leg = 1;
+//${paramsStore[leg].from0} //this equals the departure of the first flight
 
 const options = {
     headers: new Headers({
@@ -10,7 +12,6 @@ const options = {
 };
 
 function displayFlightResults(responseJson) {
-    //$('.flightSearchResults').empty();
     console.log('displayflightresults working');
     var departureDate;
     var arrivalDate;
@@ -23,31 +24,13 @@ function displayFlightResults(responseJson) {
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
         //console.log('Leaving on:', departureDate.getMonth() + '/' + departureDate.getDate() + '/' + departureDate.getFullYear() + ' at ' + departureDate.getHours() + ':' + departureDate.getMinutes(), 'Arriving to destination on:', arrivalDate.getMonth() + '/' + arrivalDate.getDate() + '/' + arrivalDate.getFullYear() + ' at ' + arrivalDate.getHours() + ':' + arrivalDate.getMinutes());
         $('.flightResultsList1').append(
-            `<li class="flight1"><h4 class="airportCodeTitle">${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}</p></li>`
+            `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
         )
         $('.flightResultsList2').append(
-            `<li class="flight1"><h4 class="airportCodeTitle">${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}</p></li>`
+            `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
         )
     }
 }
-
-    /*var string1 = "";
-    var object1 = responseJson;
-    //console.log(object1.legs.arrive);
-    //var object2 = property1 in object1;
-    for (var leg in object1.legs) {
-        //console.log(object1.legs[leg].arrive_iso);
-        let allLegs = object1.legs[leg];
-        let oneLeg = Object.values(allLegs)[3];
-        //let theLeg = Object.keys(oneLeg);
-        //console.log(oneLeg);
-    }*/
-
-   // for (let i = 0; i < 10; i++) {
-        //console.log('for loop is working:' + responseJson.legs);
-        /*$('.flightSearchResults').append(
-            `<p>${oneLeg}</p>`
-        )*/
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -88,24 +71,32 @@ function getFlightResults() {
     }
     //const departureLocation = $(departureAirport).val();
     const departureLocation0 = $('.airport0').val();
-    //const departureLocation1 = $('.airport1').val(); delete this line
+    const departureLocation1 = $('.airport1').val(); //delete this line
     const destination = $('.destination').val();
     //const destination = $(arrivalAirport).val(); change names of consts
     const departureDate = departureDateFormat();
     const returnDate = endDateFormat();
     const params = {
-        from0: departureLocation0,
-        //from1: departureLocation1,
-        //from2: 
-        to0: destination,
-        //to1: destination,
-        //to2:
-        date0: departureDate,
-        date1: returnDate,
-        pax: 1,
-        cabin: 'coach'
-    }
+            leg: 1,
+            from0: departureLocation0,
+            from1: departureLocation1,
+            from2: destination,
+            from3: destination,
+            to0: destination,
+            to1: destination,
+            to2: departureLocation0,
+            to3: departureLocation1,
+            date0: departureDate,
+            date1: returnDate,
+            pax: 1,
+            cabin: 'coach'
+            }
     const queryString = formatQueryParams(params);
+        /*if (leg < params.length) {
+            formatQueryParams(params);
+            leg++;
+        }*/
+
     const url = flightSearchURL + '?' + queryString;
     console.log(url);
     //going to have to make separate URL calls
@@ -124,7 +115,11 @@ function getFlightResults() {
 }
 
 function watchForm() {
+    $('.flightResults1').hide();
+    $('.flightResults2').hide();
     $('.flightSearchForm').submit(event => {
+        $('.flightResults1').show();
+        $('.flightResults2').show();
         event.preventDefault();
         getFlightResults();
         console.log('form is working');
