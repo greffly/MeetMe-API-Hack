@@ -17,18 +17,33 @@ function displayFlightResults(responseJson) {
     var arrivalDate;
     var departureAirport;
     var arrivalAirport;
+    for (var prop in responseJson.routings) {
+        //console.log('step 3: parent value for routings is: ', `${Object.keys(responseJson.routings)}`);
+        //console.log('step 2: leg identity code in routings is: '`${Object.values(responseJson.routings[prop].leg_idens)}`)
+    }
+    for (var prop in responseJson.itins) {
+        console.log('step 4: routing iden for itins is: ', `${Object.values(responseJson.itins[prop].routing_idens)}`);
+        //console.log('price for itins is: ', `${responseJson.itins[prop].price}`);
+    }
     for (var prop in responseJson.legs) {
         departureDate = new Date(`${responseJson.legs[prop].depart_iso}`);
         arrivalDate = new Date(`${responseJson.legs[prop].arrive_iso}`);
         departureAirport = (`${responseJson.legs[prop].from_code}`);
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
+        //console.log('step 1: leg of flight code is: ', `${Object.keys(responseJson.legs)}`);
+        
+
         //console.log('Leaving on:', departureDate.getMonth() + '/' + departureDate.getDate() + '/' + departureDate.getFullYear() + ' at ' + departureDate.getHours() + ':' + departureDate.getMinutes(), 'Arriving to destination on:', arrivalDate.getMonth() + '/' + arrivalDate.getDate() + '/' + arrivalDate.getFullYear() + ' at ' + arrivalDate.getHours() + ':' + arrivalDate.getMinutes());
-        $('.flightResultsList1').append(
-            `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
-        )
-        $('.flightResultsList2').append(
-            `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
-        )
+        if (departureAirport === $('.airport0').val() && arrivalAirport === $('.destination').val()) {
+            $('.flightResultsList1').append(
+                `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
+            )
+        }
+        if (departureAirport === $('.airport1').val() && arrivalAirport === $('.destination').val()) {
+            $('.flightResultsList2').append(
+                `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
+            )
+        }
     }
 }
 
@@ -92,14 +107,7 @@ function getFlightResults() {
             cabin: 'coach'
             }
     const queryString = formatQueryParams(params);
-        /*if (leg < params.length) {
-            formatQueryParams(params);
-            leg++;
-        }*/
-
     const url = flightSearchURL + '?' + queryString;
-    console.log(url);
-    //going to have to make separate URL calls
 
     fetch(url, {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
@@ -110,7 +118,7 @@ function getFlightResults() {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayFlightResults(responseJson))
+        .then(responseJson => displayFlightResults(responseJson) & console.log(responseJson))
         .catch(error => alert('Flight API not working.'));
 }
 

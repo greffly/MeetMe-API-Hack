@@ -23,7 +23,7 @@ function getPhotos() {
     const destination = $('.destination').val();
     //how do I find the destination airport code in the dataStore and translate it to the city name?
     //const destinationName = 
-    console.log(Object.values(airportCodeData));
+    //console.log(Object.values(airportCodeData));
     for(let i=0; i < airportCodeData.length; i++) {
         for(value in airportCodeData[i]) {
             if(airportCodeData[i][value]==destination) {
