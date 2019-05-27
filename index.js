@@ -22,7 +22,7 @@ function displayFlightResults(responseJson) {
         //console.log('step 2: leg identity code in routings is: '`${Object.values(responseJson.routings[prop].leg_idens)}`)
     }
     for (var prop in responseJson.itins) {
-        console.log('step 4: routing iden for itins is: ', `${Object.values(responseJson.itins[prop].routing_idens)}`);
+        //console.log('step 4: routing iden for itins is: ', `${Object.values(responseJson.itins[prop].routing_idens)}`);
         //console.log('price for itins is: ', `${responseJson.itins[prop].price}`);
     }
     for (var prop in responseJson.legs) {
@@ -32,8 +32,6 @@ function displayFlightResults(responseJson) {
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
         //console.log('step 1: leg of flight code is: ', `${Object.keys(responseJson.legs)}`);
         
-
-        //console.log('Leaving on:', departureDate.getMonth() + '/' + departureDate.getDate() + '/' + departureDate.getFullYear() + ' at ' + departureDate.getHours() + ':' + departureDate.getMinutes(), 'Arriving to destination on:', arrivalDate.getMonth() + '/' + arrivalDate.getDate() + '/' + arrivalDate.getFullYear() + ' at ' + arrivalDate.getHours() + ':' + arrivalDate.getMinutes());
         if (departureAirport === $('.airport0').val() && arrivalAirport === $('.destination').val()) {
             $('.flightResultsList1').append(
                 `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<h4 class="airportCodeTitle">Return Flight ${arrivalAirport} to ${departureAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><h4 class="cost">Cost: Insert Cost Here<h4></p></li>`
