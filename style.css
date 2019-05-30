@@ -33,6 +33,11 @@ button {
     margin: 20px;
 }
 
+.flightSearchResults {
+    display: flex;
+    justify-content: flex-start, center;
+    align-content: center;
+}
 .dateForm, .startingPoint {
     display: flex;
     flex-direction: row;
@@ -49,7 +54,7 @@ h3 {
     justify-content: center;
 }
 
-.flight1, .flight2 {
+.flight1, .flight3 {
     list-style: none;
     text-align: left;
     border: solid 1px black;
@@ -88,6 +93,11 @@ ul li:nth-of-type(1n+10) {
     display: flex;
     flex-direction: row;
     align-content: center;
+    justify-content: space-evenly;
+}
+
+.destinationPhotos {
+    margin: 0;
 }
 
 img {

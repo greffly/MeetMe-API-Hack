@@ -3,6 +3,7 @@
 const photoSearchURL = "https://api.unsplash.com/search/photos";
 const photoApiKey = "a579b05eb6be838537052ccfaa4d09934984e0e4afccd490edf207a1d935667d";
 
+
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
@@ -11,7 +12,13 @@ function formatQueryParams(params) {
 }
 
 function displayPhotos(responseJson) {
+    const destination = $('.destination').val();
     $('.destinationPhotoList').empty();
+    //console.log(`${dataStore[airportCodeData].Aleknagik}`);
+    /*if (destination == Object.values($(dataStore))) {
+        console.log('dataStore working');
+    }*/
+    $('.destinationName').append(`<h2>Ah, Beautiful ${destination}</h2>`);
     for (let i = 0; i < responseJson.results.length; i++) {
         $('.destinationPhotoList').append(
             `<li class="photo"><img src="${responseJson.results[i].urls.full}"</li>`
@@ -20,10 +27,10 @@ function displayPhotos(responseJson) {
 }
 
 function getPhotos() {
-    const destination = $('.destination').val();
     //how do I find the destination airport code in the dataStore and translate it to the city name?
     //const destinationName = 
     //console.log(Object.values(airportCodeData));
+    const destination = $('.destination').val();
     for(let i=0; i < airportCodeData.length; i++) {
         for(value in airportCodeData[i]) {
             if(airportCodeData[i][value]==destination) {
