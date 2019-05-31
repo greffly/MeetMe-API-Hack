@@ -20,6 +20,10 @@ function endDateFormat() {
 
 function displayFlightResults(responseJson) {
     console.log('displayflightresults working');
+    $('.departingFlight1').empty();
+    $('.departingFlight2').empty();
+    $('.departingFlight3').empty();
+    $('.departingFlight4').empty();
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -31,17 +35,8 @@ function displayFlightResults(responseJson) {
         departureAirport = (`${responseJson.legs[prop].from_code}`);
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
         jsonDateFormat = (('0' + (departureDate.getMonth() + 1)) + ' ' + departureDate.getDate() + ' ' + departureDate.getFullYear());
-        //console.log('json format plus end date format', jsonDateFormat, endDateFormat());
-        //console.log('arrival airport: ', arrivalAirport, 'departure airport: ', departureAirport);
-        //let newDepartureDate = departureDate.slice(0,9);
-    //let newArrivalDate = arrivalDate.slice(0,9);
-      //console.log('user input: ', departureDateFormat());
-      //console.log('json input: ', jsonDateFormat);
-
-       //console.log(departureDate, $('.startDate').val());
-        //this returns 07 10 2019, 2019-07-11T01:30:00.000Z, 2019-07-10
-        //I'm going to need to use .slice(start, end) on departureDate to get it to be the same format as departureDateFormat().
-        //console.log('step 1: leg of flight code is: ', `${Object.keys(responseJson.legs)}`);
+    }    
+        
        if (departureAirport === $('.airport0').val() && arrivalAirport === $('.destination').val()) {
             $('.departingFlight1').append(
                 `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
@@ -49,7 +44,7 @@ function displayFlightResults(responseJson) {
         }
         if (departureAirport === $('.destination').val() && arrivalAirport === $('.airport0').val()) {
             $('.departingFlight2').append(
-                `<li class="flight2><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
+                `<li class="flight2"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
         if (departureAirport === $('.airport1').val() && arrivalAirport === $('.destination').val()) {
@@ -62,7 +57,7 @@ function displayFlightResults(responseJson) {
                 `<li class="flight4"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
-    }
+    selectFlights();
 }
 
 function formatQueryParams(params) {
@@ -72,29 +67,10 @@ function formatQueryParams(params) {
 }
 
 
-//getFlightResults('.airport0', '.destination');
-//going to call this function 4 times with different variables
-
-    /*function getFlightResults(departureAirport, arrivalAirport, departureDate) {
-        
-    }
-    */
-
-function departureDateFormat() {
-    let date = $('.startDate').val().split('-');
-    return (date[1] + ' ' + date[2] + ' ' + date[0]);
-}
-function endDateFormat() {
-    let date = $('.endDate').val().split('-');
-    return (date[1] + ' ' + date[2] + ' ' + date[0]);
-}
-const departureLocation0 = $('.airport0').val();
-const departureLocation1 = $('.airport1').val();
-const destination = $('.destination').val();
-const departureDate = departureDateFormat();
-const returnDate = endDateFormat();
-
 function getFlightResults1() {
+    const departureLocation0 = $('.airport0').val();
+    const destination = $('.destination').val();
+    const departureDate = departureDateFormat();
     const params = {
             from0: departureLocation0,
             to0: destination,
@@ -115,11 +91,14 @@ function getFlightResults1() {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayFlightResults(responseJson) & console.log('getFlightResults1 working'))
+        .then(responseJson => displayFlightResults(responseJson))
         .catch(error => alert('Flight API not working.'));
 }
 
 function getFlightResults2() {
+    const departureLocation1 = $('.airport1').val();
+    const destination = $('.destination').val();
+    const departureDate = departureDateFormat();
     const params = {
         from0: departureLocation1,
         to0: destination,
@@ -140,11 +119,14 @@ fetch(url, {
         }
         throw new Error(response.statusText);
     })
-    .then(responseJson => displayFlightResults(responseJson) & console.log('getFlightResults2 working'))
+    .then(responseJson => displayFlightResults(responseJson))
     .catch(error => alert('Flight API not working.'));
 }
 
 function getFlightResults3() {
+    const departureLocation0 = $('.airport0').val();
+    const destination = $('.destination').val();
+    const returnDate = endDateFormat();
     const params = {
         from0: destination,
         to0: departureLocation0,
@@ -165,11 +147,14 @@ fetch(url, {
         }
         throw new Error(response.statusText);
     })
-    .then(responseJson => displayFlightResults(responseJson) & console.log('flightresults3 working'))
+    .then(responseJson => displayFlightResults(responseJson))
     .catch(error => alert('Flight API not working.'));
 }
 
 function getFlightResults4() {
+    const departureLocation1 = $('.airport1').val();
+    const destination = $('.destination').val();
+    const returnDate = endDateFormat();
     const params = {
         from0: destination,
         to0: departureLocation1,
@@ -190,7 +175,7 @@ fetch(url, {
         }
         throw new Error(response.statusText);
     })
-    .then(responseJson => displayFlightResults(responseJson) & console.log(responseJson))
+    .then(responseJson => displayFlightResults(responseJson))
     .catch(error => alert('Flight API not working.'));
 }
 
@@ -201,20 +186,28 @@ function getAllFlightResults() {
     getFlightResults4();
 }
 
-//maybe run multiple getFlightResults functions, one for each leg
-
-function selectDepartingFlight() {
+function selectFlights() {
     $('.flight1 button').click(event => {
-        //keep selected flight showing, hide all other departingFlight1 li's
+        $(event.target).closest('li').removeClass('flight1').addClass('selectedFlight');
         $('.flight1').hide();
-        $(this).show();
+    })
+    $('.flight2 button').click(event => {
+        $(event.target).closest('li').removeClass('flight2').addClass('selectedFlight');
+        $('.flight2').hide();
+    })
+    $('.flight3 button').click(event => {
+        $(event.target).closest('li').removeClass('flight3').addClass('selectedFlight');
+        $('.flight3').hide();
+    })
+    $('.flight4 button').click(event => {
+        $(event.target).closest('li').removeClass('flight4').addClass('selectedFlight');
+        $('.flight4').hide();
     })
 }
 
 function watchForm() {
     $('.flightResults1').hide();
     $('.flightResults2').hide();
-    selectDepartingFlight();
     $('.flightSearchForm').submit(event => {
         $('.flightResults1').show();
         $('.flightResults2').show();

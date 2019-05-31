@@ -35,9 +35,13 @@ button {
 
 .flightSearchResults {
     display: flex;
-    justify-content: flex-start, center;
-    align-content: center;
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    padding: 0;
 }
+
 .dateForm, .startingPoint {
     display: flex;
     flex-direction: row;
@@ -54,7 +58,7 @@ h3 {
     justify-content: center;
 }
 
-.flight1, .flight3 {
+.flight1, .flight2, .flight3, .flight4, .selectedFlight {
     list-style: none;
     text-align: left;
     border: solid 1px black;
@@ -64,13 +68,23 @@ h3 {
     padding: 5px;
 }
 
+.selectFlight {
+    display: block;
+    align-content: center;
+    margin: 5px auto;
+}
+
+.selectedFlight {
+    background-color: gainsboro;
+}
+
 .flightResults1, .flightResults2 {
-    padding: 5px;
+    padding: 8px;
     border: solid 1px black;
     display: inline-block;
     margin: 10px;
     align-content: center;
-    width: 45%;
+    width: 48%;
 }
 
 .flightResultsList1, .flightResultsList2 {
@@ -92,8 +106,10 @@ ul li:nth-of-type(1n+10) {
 .destinationPhotoList {
     display: flex;
     flex-direction: row;
-    align-content: center;
     justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .destinationPhotos {
