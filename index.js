@@ -19,12 +19,19 @@ function endDateFormat() {
 }
 
 function displayFlightResults(responseJson) {
+
     console.log('displayflightresults working');
+    $('.departingFlight1').empty();
+    $('.departingFlight2').empty();
+    $('.departingFlight3').empty();
+    $('.departingFlight4').empty();
+
     var departureDate;
     var arrivalDate;
     var departureAirport;
     var arrivalAirport;
     var jsonDateFormat;
+
     for (var prop in responseJson.legs) {
         departureDate = new Date(responseJson.legs[prop].depart_iso);
         arrivalDate = new Date(`${responseJson.legs[prop].arrive_iso}`);
