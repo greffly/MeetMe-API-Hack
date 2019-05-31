@@ -20,10 +20,6 @@ function endDateFormat() {
 
 function displayFlightResults(responseJson) {
     console.log('displayflightresults working');
-    $('.departingFlight1').empty();
-    $('.departingFlight2').empty();
-    $('.departingFlight3').empty();
-    $('.departingFlight4').empty();
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -34,8 +30,7 @@ function displayFlightResults(responseJson) {
         arrivalDate = new Date(`${responseJson.legs[prop].arrive_iso}`);
         departureAirport = (`${responseJson.legs[prop].from_code}`);
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
-        jsonDateFormat = (('0' + (departureDate.getMonth() + 1)) + ' ' + departureDate.getDate() + ' ' + departureDate.getFullYear());
-    }    
+        jsonDateFormat = (('0' + (departureDate.getMonth() + 1)) + ' ' + departureDate.getDate() + ' ' + departureDate.getFullYear());   
         
        if (departureAirport === $('.airport0').val() && arrivalAirport === $('.destination').val()) {
             $('.departingFlight1').append(
@@ -57,6 +52,7 @@ function displayFlightResults(responseJson) {
                 `<li class="flight4"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${departureDate.getMonth()}/${departureDate.getDate()}/${departureDate.getFullYear()} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${arrivalDate.getMonth()}/${arrivalDate.getDate()}/${arrivalDate.getFullYear()} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
+    }
     selectFlights();
 }
 
