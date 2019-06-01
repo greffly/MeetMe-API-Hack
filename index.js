@@ -8,23 +8,15 @@ const options = {
         "X-RapidAPI-Key": flightApiKey})
 };
 
-function departureDateFormat() {
-        let date = $('.startDate').val().split('-');
-        return (date[1] + ' ' + date[2] + ' ' + date[0]);
-    }
-
-function endDateFormat() {
-    let date = $('.endDate').val().split('-');
-    return (date[1] + ' ' + date[2] + ' ' + date[0]);
-}
-
 function displayFlightResults(responseJson) {
 
     console.log('displayflightresults working');
-    $('.departingFlight1').empty();
+
+    //these empty functions below work to empty the results, but keep all results from being printed. 
+    /*$('.departingFlight1').empty();
     $('.departingFlight2').empty();
     $('.departingFlight3').empty();
-    $('.departingFlight4').empty();
+    $('.departingFlight4').empty();*/
 
     var departureDate;
     var arrivalDate;
@@ -69,6 +61,15 @@ function formatQueryParams(params) {
     return queryItems.join('&');   
 }
 
+function departureDateFormat() {
+    let date = $('.startDate').val().split('-');
+    return (date[1] + ' ' + date[2] + ' ' + date[0]);
+}
+
+function endDateFormat() {
+let date = $('.endDate').val().split('-');
+return (date[1] + ' ' + date[2] + ' ' + date[0]);
+}
 
 function getFlightResults1() {
     const departureLocation0 = $('.airport0').val();
