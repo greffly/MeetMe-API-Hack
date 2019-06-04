@@ -4,23 +4,6 @@ const flightSearchURL = "https://apidojo-hipmunk-v1.p.rapidapi.com/flights/creat
 const flightApiKey = "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5";
 
 var flightCodeList = Object.keys(airportCodeData);
-/*var flightCodeList = document.getElementById("airportCode");
-function autocompleteFlightCode(destination, flightCodeList) {
-    var currentFocus;
-    destination.addEventListener("input", function(e) {
-        var a, b, i, val = this.value;
-        closeAllLists();
-        if(!val) { return false; }
-
-        currentFocus = -1;
-    })
-
-}
-
-function getAirportCode() {
-    this.list = [Object.keys(airportCodeData)];
-}*/
-//how do I connect this to the dataStore.js file?
 
 const options = {
     headers: new Headers({
@@ -107,7 +90,7 @@ function getFlightResults1() {
     })
         .then (response => {
             if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation0) == -1) {
-                alert('Please enter valid airport codes.');
+                alert('Please enter a valid airport code for traveler 1.');
                 throw new Error(response.statusText);
             }
             else {
@@ -140,7 +123,7 @@ fetch(url, {
     .then (response => {
         if (response.ok) {
             if (flightCodeList.indexOf(departureLocation1) == -1) {
-                alert('Please enter valid airport codes.');
+                console.log('Please enter a valid airport code for traveler 1.');
                 throw new Error(response.statusText);
             }
             else {
@@ -172,8 +155,8 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-        if (flightCodeList.indexOf(destination) == -1 ) {
-            console.log('Please enter valid airport codes.');
+        if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation0) == -1) {
+            console.log('Please enter a valid airport code for traveler 2.');
             throw new Error(response.statusText);
         }
         else {
@@ -205,8 +188,8 @@ fetch(url, {
 })
         
     .then (response => {
-        if (flightCodeList.indexOf(departureLocation1) == -1) {
-            console.log('Please enter valid airport codes.');
+        if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation1) == -1) {
+            alert ('Please enter a valid airport code for traveler 2.');
             throw new Error(response.statusText);
         }
         else {
