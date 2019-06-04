@@ -18,28 +18,28 @@
         <section class="destinationForm">
             <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
             <datalist id="airportCode"></datalist>
-            <input class="destination" type="text" placeholder="SFO" value="SFO" list="airportCode" name="airportCode" required>
+            <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" required>
         </section>
         <h3>When Are You Going?</h3>
         <section class="dateForm">
             <div class="formSection">
                 <label>Leaving On</label>
-                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy">
+                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
             </div>
             <div class="formSection">
                 <label>Coming Back</label>
-                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy">
+                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
             </div>
         </section>
         <h3 class="originatingAirport">Starting Airports</h3>
         <section class="startingPoint">
             <div class="formSection">
                 <label>Traveler 1</label>
-                <input class="airport0" type="text" placeholder="LAX" value="LAX" id="airportCode" required>
+                <input class="airport0" type="text" placeholder="LAX" id="airportCode" required>
             </div>
             <div class="formSection">
                 <label>Traveler 2</label>
-                <input class="airport1" type="text" placeholder="PDX" value="PDX" id="airportCode" required>
+                <input class="airport1" type="text" placeholder="PDX" id="airportCode" required>
             </div>
         </section>
         <button type="submit">Let's Go!</button>
