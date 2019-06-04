@@ -29,7 +29,7 @@ function getPhotos() {
         for(value in airportCodeData[i]) {
             if(airportCodeData[i][value]==destination) {
                 console.log('params store key working: ', airportCodeData[i][key]);
-            }
+            } 
         }
     }
     var params = {
@@ -41,7 +41,6 @@ function getPhotos() {
     }
     const queryString = formatQueryParams(params);
     const url = photoSearchURL + '?' + queryString;
-    //console.log('current destination :', currentDestination);
 
     fetch(url)
         .then(response => {
@@ -56,11 +55,20 @@ function getPhotos() {
         .then(responseJson => displayPhotos(responseJson))
         .catch(error => alert('Photo API not working'));
 }
+/*
+//creating a function to enlarge selected photo
+function enlargePhoto() {
+    $('.photo').on('click', function(event) {
+        
+    });
+}
+*/
 
 function watchForm() {
     $('.flightSearchForm').submit(event => {
         event.preventDefault();
         getPhotos();
+        enlargePhoto();
         console.log('Photo form is working');
     })
 }

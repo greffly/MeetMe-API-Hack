@@ -125,6 +125,10 @@ img {
     height: 100%;
 }
 
+img:hover, button:hover {
+    cursor: pointer;
+}
+
 h4 {
     margin: 0;
 }
