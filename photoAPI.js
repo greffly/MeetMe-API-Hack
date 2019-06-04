@@ -11,7 +11,7 @@ function formatQueryParams(params) {
 }
 
 function displayPhotos(responseJson) {
-    const destination = $('.destination').val();
+    const destination = $('.destination').val().toUpperCase();
     $('.destinationPhotoList').empty();
     $('.destinationName').empty();
     $('.destinationName').append(`<h2>Ah, Beautiful ${airportCodeData[destination]}</h2>`);
@@ -23,7 +23,7 @@ function displayPhotos(responseJson) {
 }
 
 function getPhotos() {
-    const destination = $('.destination').val();
+    const destination = $('.destination').val().toUpperCase();
     let currentDestination = airportCodeData[destination];
     for(let i=0; i < airportCodeData.length; i++) {
         for(value in airportCodeData[i]) {

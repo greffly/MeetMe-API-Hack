@@ -10,7 +10,7 @@ const options = {
 };
 
 function displayFlightResults(responseJson) {
-    //console.log('displayflightresults working');
+    console.log('displayflightresults working');
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -27,22 +27,22 @@ function displayFlightResults(responseJson) {
         $('.flightResults1').show();
         $('.flightResults2').show();
 
-       if (departureAirport === $('.airport0').val() && arrivalAirport === $('.destination').val()) {
+       if (departureAirport === $('.airport0').val().toUpperCase() && arrivalAirport === $('.destination').val().toUpperCase()) {
             $('.departingFlight1').append(
                 `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
-        if (departureAirport === $('.destination').val() && arrivalAirport === $('.airport0').val()) {
+        if (departureAirport === $('.destination').val().toUpperCase() && arrivalAirport === $('.airport0').val().toUpperCase()) {
             $('.departingFlight2').append(
                 `<li class="flight2"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
-        if (departureAirport === $('.airport1').val() && arrivalAirport === $('.destination').val()) {
+        if (departureAirport === $('.airport1').val().toUpperCase() && arrivalAirport === $('.destination').val().toUpperCase()) {
             $('.departingFlight3').append(
                 `<li class="flight3"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
-        if (departureAirport === $('.destination').val() && arrivalAirport === $('.airport1').val()) {
+        if (departureAirport === $('.destination').val().toUpperCase() && arrivalAirport === $('.airport1').val().toUpperCase()) {
             $('.departingFlight4').append(
                 `<li class="flight4"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p>Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
             )
@@ -69,8 +69,8 @@ return (date[1] + ' ' + date[2] + ' ' + date[0]);
 
 function getFlightResults1() {
     $('.departingFlight1').empty();
-    const departureLocation0 = $('.airport0').val();
-    const destination = $('.destination').val();
+    const departureLocation0 = $('.airport0').val().toUpperCase();
+    const destination = $('.destination').val().toUpperCase();
     const departureDate = departureDateFormat();
     const params = {
             from0: departureLocation0,
@@ -81,7 +81,6 @@ function getFlightResults1() {
             }
     const queryString = formatQueryParams(params);
     const url = flightSearchURL + '?' + queryString;
-
     fetch(url, {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
@@ -100,8 +99,8 @@ function getFlightResults1() {
 
 function getFlightResults2() {
     $('.departingFlight2').empty();
-    const departureLocation1 = $('.airport1').val();
-    const destination = $('.destination').val();
+    const departureLocation1 = $('.airport1').val().toUpperCase();
+    const destination = $('.destination').val().toUpperCase();
     const departureDate = departureDateFormat();
     const params = {
         from0: departureLocation1,
@@ -112,7 +111,6 @@ function getFlightResults2() {
         }
 const queryString = formatQueryParams(params);
 const url = flightSearchURL + '?' + queryString;
-console.log(url);
 
 fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
@@ -134,8 +132,8 @@ fetch(url, {
 
 function getFlightResults3() {
     $('.departingFlight3').empty();
-    const departureLocation0 = $('.airport0').val();
-    const destination = $('.destination').val();
+    const departureLocation0 = $('.airport0').val().toUpperCase();
+    const destination = $('.destination').val().toUpperCase();
     const returnDate = endDateFormat();
     const params = {
         from0: destination,
@@ -146,7 +144,6 @@ function getFlightResults3() {
         }
 const queryString = formatQueryParams(params);
 const url = flightSearchURL + '?' + queryString;
-console.log(url);
 
 fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
@@ -166,8 +163,8 @@ fetch(url, {
 
 function getFlightResults4() {
     $('.departingFlight4').empty();
-    const departureLocation1 = $('.airport1').val();
-    const destination = $('.destination').val();
+    const departureLocation1 = $('.airport1').val().toUpperCase();
+    const destination = $('.destination').val().toUpperCase();
     const returnDate = endDateFormat();
     const params = {
         from0: destination,
@@ -178,7 +175,6 @@ function getFlightResults4() {
         }
 const queryString = formatQueryParams(params);
 const url = flightSearchURL + '?' + queryString;
-console.log(url);
 
 fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
