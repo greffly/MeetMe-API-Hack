@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,65 +8,65 @@
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Poiret+One" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header class="title">
-        <h1>MeetMe</h1>
-        <h2>Connecting Friends, Family, and Colleagues in a Common Destination</h2>
-    </header>
-    <form class="flightSearchForm">
-        <section class="destinationForm">
-            <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
-            <datalist id="airportCode"></datalist>
-            <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" required>
+    </head>
+    <body>
+        <header class="pageTitle">
+            <h1>MeetMe</h1>
+            <h2>Connecting Friends, Family, and Colleagues in a Common Destination</h2>
+        </header>
+        <form class="flightSearchForm">
+            <section class="enterDestination">
+                <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
+                <datalist id="airportCode"></datalist>
+                <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" required>
+            </section>
+            <h3>When Are You Going?</h3>
+            <section class="enterTripDates">
+                <div class="formSection">
+                    <label>Leaving On</label>
+                    <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
+                </div>
+                <div class="formSection">
+                    <label>Coming Back</label>
+                    <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
+                </div>
+            </section>
+            <h3 class="originatingAirport">Starting Airports</h3>
+            <section class="enterOrigin">
+                <div class="formSection">
+                    <label>Traveler 1</label>
+                    <input class="airport0" type="text" placeholder="LAX" id="airportCode" required>
+                </div>
+                <div class="formSection">
+                    <label>Traveler 2</label>
+                    <input class="airport1" type="text" placeholder="PDX" id="airportCode" required>
+                </div>
+            </section>
+            <button type="submit">Let's Go!</button>
+        </form>
+        <section class="destinationPhotos">
+            <h3 class="destinationName"></h3>
+                <ul class="destinationPhotoList">
+                </ul>
         </section>
-        <h3>When Are You Going?</h3>
-        <section class="dateForm">
-            <div class="formSection">
-                <label>Leaving On</label>
-                <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
-            </div>
-            <div class="formSection">
-                <label>Coming Back</label>
-                <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
-            </div>
+        <section class="flightSearchResults">
+            <section class="flightResults1">
+                <h3 class="flightResultsTitle">Flight 1 Results:</h3>
+                <ul class="flightResultsList1">
+                    <li class="departingFlight1"></li>
+                    <li class="departingFlight2"></li>
+                </ul>
+            </section>
+            <section class="flightResults2">
+                <h3 class="flightResultsTitle">Flight 2 Results:</h3>
+                <ul class="flightResultsList2">
+                    <li class="departingFlight3"></li>
+                    <li class="departingFlight4"></li>
+                </ul>
+            </section>
         </section>
-        <h3 class="originatingAirport">Starting Airports</h3>
-        <section class="startingPoint">
-            <div class="formSection">
-                <label>Traveler 1</label>
-                <input class="airport0" type="text" placeholder="LAX" id="airportCode" required>
-            </div>
-            <div class="formSection">
-                <label>Traveler 2</label>
-                <input class="airport1" type="text" placeholder="PDX" id="airportCode" required>
-            </div>
-        </section>
-        <button type="submit">Let's Go!</button>
-    </form>
-    <section class="destinationPhotos">
-        <h3 class="destinationName"></h3>
-            <ul class="destinationPhotoList">
-            </ul>
-    </section>
-    <section class="flightSearchResults">
-        <section class="flightResults1">
-            <h3 class="flightResultsTitle">Flight 1 Results:</h3>
-            <ul class="flightResultsList1">
-                <li class="departingFlight1"></li>
-                <li class="departingFlight2"></li>
-            </ul>
-        </section>
-        <section class="flightResults2">
-            <h3 class="flightResultsTitle">Flight 2 Results:</h3>
-            <ul class="flightResultsList2">
-                <li class="departingFlight3"></li>
-                <li class="departingFlight4"></li>
-            </ul>
-        </section>
-    </section>
-    <script src="dataStore.js"></script>
-    <script src="index.js"></script>
-    <script src="photoAPI.js"></script>
-</body>
+        <script src="dataStore.js"></script>
+        <script src="index.js"></script>
+        <script src="photoAPI.js"></script>
+    </body>
 </html>

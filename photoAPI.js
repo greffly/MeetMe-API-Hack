@@ -17,7 +17,7 @@ function displayPhotos(responseJson) {
     $('.destinationName').append(`<h2>Ah, Beautiful ${airportCodeData[destination]}</h2>`);
     for (let i = 0; i < responseJson.results.length; i++) {
         $('.destinationPhotoList').append(
-            `<li class="photo"><img src="${responseJson.results[i].urls.full}"</li>`
+            `<li class="photo"><img src="${responseJson.results[i].urls.full}" alt="Picture of ${airportCodeData[destination]}"</li>`
         )
     }
 }

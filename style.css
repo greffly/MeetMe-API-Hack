@@ -4,6 +4,8 @@
 
 html {
     text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
 }
 
 input, label {
@@ -15,12 +17,16 @@ input {
     margin: 5px;
 }
 
-.destinationForm, input {
+h1 {
+    font-size: 2.5em;
+}
+
+.enterDestination, input {
     display: inline-block;
     text-align: center;
 }
 
-.destinationForm, .startingPoint {
+.enterDestination, .enterOrigin {
     position: relative;
 }
 
@@ -46,7 +52,7 @@ button {
     padding: 0;
 }
 
-.dateForm, .startingPoint {
+.enterTripDates, .enterOrigin {
     display: flex;
     flex-direction: row;
     justify-content: center;

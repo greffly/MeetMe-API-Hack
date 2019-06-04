@@ -2,7 +2,6 @@
 
 const flightSearchURL = "https://apidojo-hipmunk-v1.p.rapidapi.com/flights/create-session";
 const flightApiKey = "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5";
-
 var flightCodeList = Object.keys(airportCodeData);
 
 const options = {
@@ -12,7 +11,6 @@ const options = {
 
 function displayFlightResults(responseJson) {
     //console.log('displayflightresults working');
-
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -83,14 +81,13 @@ function getFlightResults1() {
             }
     const queryString = formatQueryParams(params);
     const url = flightSearchURL + '?' + queryString;
-    console.log('index of destination: ', flightCodeList.indexOf(destination));
 
     fetch(url, {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
         .then (response => {
-            if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation0) == -1) {
-                alert('Please enter a valid airport code for traveler 1.');
+            if (flightCodeList.indexOf(destination) == -1) {
+                alert('Please enter a valid destination airport code.');
                 throw new Error(response.statusText);
             }
             else {
@@ -123,7 +120,7 @@ fetch(url, {
     .then (response => {
         if (response.ok) {
             if (flightCodeList.indexOf(departureLocation1) == -1) {
-                console.log('Please enter a valid airport code for traveler 1.');
+                alert('Please enter a valid airport code for traveler 2.');
                 throw new Error(response.statusText);
             }
             else {
@@ -155,8 +152,8 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-        if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation0) == -1) {
-            console.log('Please enter a valid airport code for traveler 2.');
+        if (flightCodeList.indexOf(departureLocation0) == -1) {
+            alert('Please enter a valid airport code for traveler 1.');
             throw new Error(response.statusText);
         }
         else {
@@ -188,8 +185,8 @@ fetch(url, {
 })
         
     .then (response => {
-        if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation1) == -1) {
-            alert ('Please enter a valid airport code for traveler 2.');
+        if (flightCodeList.indexOf(departureLocation1) == -1) {
+            console.log ('Please enter a valid airport code for traveler 2.');
             throw new Error(response.statusText);
         }
         else {
@@ -232,7 +229,7 @@ function watchForm() {
     $('.flightSearchForm').submit(event => {
         event.preventDefault();
         getAllFlightResults();
-        console.log('form is working');
+        console.log('flight form is working');
     })
 }
 
