@@ -53,7 +53,7 @@ function getPhotos() {
             }
         })
         .then(responseJson => displayPhotos(responseJson))
-        .catch(error => alert('Photo API not working'));
+        .catch(error => console.log('Photo API not working'));
 }
 /*
 //creating a function to enlarge selected photo
@@ -68,7 +68,6 @@ function watchForm() {
     $('.flightSearchForm').submit(event => {
         event.preventDefault();
         getPhotos();
-        enlargePhoto();
         console.log('Photo form is working');
     })
 }

@@ -11,7 +11,7 @@ const options = {
 };
 
 function displayFlightResults(responseJson) {
-    console.log('displayflightresults working');
+    //console.log('displayflightresults working');
 
     var departureDate;
     var arrivalDate;
