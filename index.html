@@ -18,7 +18,18 @@
             <section class="enterDestination">
                 <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
                 <datalist id="airportCode"></datalist>
-                <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" required>
+                <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" autocomplete="off" required>
+            </section>
+            <h3 class="originatingAirport">Where Are You Traveling From?</h3>
+            <section class="enterOrigin">
+                <div class="formSection">
+                    <label>Traveler 1</label>
+                    <input class="airport0" type="text" placeholder="LAX" id="airportCode" autocomplete="off" required>
+                </div>
+                <div class="formSection">
+                    <label>Traveler 2</label>
+                    <input class="airport1" type="text" placeholder="PDX" id="airportCode" autocomplete="off" required>
+                </div>
             </section>
             <h3>When Are You Going?</h3>
             <section class="enterTripDates">
@@ -29,17 +40,6 @@
                 <div class="formSection">
                     <label>Coming Back</label>
                     <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
-                </div>
-            </section>
-            <h3 class="originatingAirport">Starting Airports</h3>
-            <section class="enterOrigin">
-                <div class="formSection">
-                    <label>Traveler 1</label>
-                    <input class="airport0" type="text" placeholder="LAX" id="airportCode" required>
-                </div>
-                <div class="formSection">
-                    <label>Traveler 2</label>
-                    <input class="airport1" type="text" placeholder="PDX" id="airportCode" required>
                 </div>
             </section>
             <button type="submit">Let's Go!</button>
