@@ -7,7 +7,6 @@ const photoApiKey = "a579b05eb6be838537052ccfaa4d09934984e0e4afccd490edf207a1d93
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    //console.log(queryItems.join('&'));
     return queryItems.join('&');
 }
 
@@ -15,7 +14,6 @@ function displayPhotos(responseJson) {
     const destination = $('.destination').val();
     $('.destinationPhotoList').empty();
     $('.destinationName').empty();
-    //console.log(`${airportCodeData[destination]}`);
     $('.destinationName').append(`<h2>Ah, Beautiful ${airportCodeData[destination]}</h2>`);
     for (let i = 0; i < responseJson.results.length; i++) {
         $('.destinationPhotoList').append(
@@ -34,7 +32,7 @@ function getPhotos() {
             }
         }
     }
-    const params = {
+    var params = {
         "client_id": photoApiKey,
         query: currentDestination,
         orientation: 'landscape',
@@ -43,14 +41,17 @@ function getPhotos() {
     }
     const queryString = formatQueryParams(params);
     const url = photoSearchURL + '?' + queryString;
-    //console.log(url);
+    //console.log('current destination :', currentDestination);
 
     fetch(url)
         .then(response => {
-            if (response.ok) {
+            if (currentDestination == undefined) {
+                console.log('currentDestination is undefined');
+                throw new Error(response.statusText);
+            }
+            else {
                 return response.json()
             }
-            throw new Error(response.statusText);
         })
         .then(responseJson => displayPhotos(responseJson))
         .catch(error => alert('Photo API not working'));

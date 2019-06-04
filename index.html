@@ -17,7 +17,8 @@
     <form class="flightSearchForm">
         <section class="destinationForm">
             <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
-            <input class="destination" type="text" placeholder="SFO">
+            <datalist id="airportCode"></datalist>
+            <input class="destination" type="text" placeholder="SFO" value="SFO" list="airportCode" name="airportCode" required>
         </section>
         <h3>When Are You Going?</h3>
         <section class="dateForm">
@@ -34,11 +35,11 @@
         <section class="startingPoint">
             <div class="formSection">
                 <label>Traveler 1</label>
-                <input class="airport0" type="text" placeholder="LAX">
+                <input class="airport0" type="text" placeholder="LAX" value="LAX" id="airportCode" required>
             </div>
             <div class="formSection">
                 <label>Traveler 2</label>
-                <input class="airport1" type="text" placeholder="PDX">
+                <input class="airport1" type="text" placeholder="PDX" value="PDX" id="airportCode" required>
             </div>
         </section>
         <button type="submit">Let's Go!</button>

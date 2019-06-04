@@ -20,6 +20,10 @@ input {
     text-align: center;
 }
 
+.destinationForm, .startingPoint {
+    position: relative;
+}
+
 div {
     margin: 10px;
 }

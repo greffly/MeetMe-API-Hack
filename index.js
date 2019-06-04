@@ -3,20 +3,32 @@
 const flightSearchURL = "https://apidojo-hipmunk-v1.p.rapidapi.com/flights/create-session";
 const flightApiKey = "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5";
 
+var flightCodeList = Object.keys(airportCodeData);
+/*var flightCodeList = document.getElementById("airportCode");
+function autocompleteFlightCode(destination, flightCodeList) {
+    var currentFocus;
+    destination.addEventListener("input", function(e) {
+        var a, b, i, val = this.value;
+        closeAllLists();
+        if(!val) { return false; }
+
+        currentFocus = -1;
+    })
+
+}
+
+function getAirportCode() {
+    this.list = [Object.keys(airportCodeData)];
+}*/
+//how do I connect this to the dataStore.js file?
+
 const options = {
     headers: new Headers({
         "X-RapidAPI-Key": flightApiKey})
 };
 
 function displayFlightResults(responseJson) {
-
     console.log('displayflightresults working');
-
-    //these empty functions below work to empty the results, but keep all results from being printed. 
-    /*$('.departingFlight1').empty();
-    $('.departingFlight2').empty();
-    $('.departingFlight3').empty();
-    $('.departingFlight4').empty();*/
 
     var departureDate;
     var arrivalDate;
@@ -72,6 +84,7 @@ return (date[1] + ' ' + date[2] + ' ' + date[0]);
 }
 
 function getFlightResults1() {
+    $('.departingFlight1').empty();
     const departureLocation0 = $('.airport0').val();
     const destination = $('.destination').val();
     const departureDate = departureDateFormat();
@@ -84,22 +97,26 @@ function getFlightResults1() {
             }
     const queryString = formatQueryParams(params);
     const url = flightSearchURL + '?' + queryString;
-    console.log(url);
+    console.log('index of destination: ', flightCodeList.indexOf(destination));
 
     fetch(url, {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
         .then (response => {
-            if (response.ok) {
+            if (flightCodeList.indexOf(destination) == -1 || flightCodeList.indexOf(departureLocation0) == -1) {
+                alert('Please enter valid airport codes.');
+                throw new Error(response.statusText);
+            }
+            else {
                 return response.json();
             }
-            throw new Error(response.statusText);
         })
         .then(responseJson => displayFlightResults(responseJson))
-        .catch(error => alert('Flight API not working.'));
+        .catch(error => console.log('Flight API not working.'));
 }
 
 function getFlightResults2() {
+    $('.departingFlight2').empty();
     const departureLocation1 = $('.airport1').val();
     const destination = $('.destination').val();
     const departureDate = departureDateFormat();
@@ -119,15 +136,21 @@ fetch(url, {
 })
     .then (response => {
         if (response.ok) {
-            return response.json();
-        }
-        throw new Error(response.statusText);
+            if (flightCodeList.indexOf(departureLocation1) == -1) {
+                alert('Please enter valid airport codes.');
+                throw new Error(response.statusText);
+            }
+            else {
+                return response.json();
+            }
+        }    
     })
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => alert('Flight API not working.'));
+    .catch(error => console.log('Flight API not working.'));
 }
 
 function getFlightResults3() {
+    $('.departingFlight3').empty();
     const departureLocation0 = $('.airport0').val();
     const destination = $('.destination').val();
     const returnDate = endDateFormat();
@@ -146,16 +169,20 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-        if (response.ok) {
+        if (flightCodeList.indexOf(destination) == -1 ) {
+            console.log('Please enter valid airport codes.');
+            throw new Error(response.statusText);
+        }
+        else {
             return response.json();
         }
-        throw new Error(response.statusText);
     })
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => alert('Flight API not working.'));
+    .catch(error => console.log('Flight API not working.'));
 }
 
 function getFlightResults4() {
+    $('.departingFlight4').empty();
     const departureLocation1 = $('.airport1').val();
     const destination = $('.destination').val();
     const returnDate = endDateFormat();
@@ -173,14 +200,18 @@ console.log(url);
 fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
+        
     .then (response => {
-        if (response.ok) {
+        if (flightCodeList.indexOf(departureLocation1) == -1) {
+            console.log('Please enter valid airport codes.');
+            throw new Error(response.statusText);
+        }
+        else {
             return response.json();
         }
-        throw new Error(response.statusText);
     })
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => alert('Flight API not working.'));
+    .catch(error => console.log('Flight API not working.'));
 }
 
 function getAllFlightResults() {
