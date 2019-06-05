@@ -85,7 +85,7 @@ function getFlightResults1() {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
         .then (response => {
-            if (!response.ok) {
+            if (response.status == 503) {
                 $('.ifError').append(`<p class='errorMessage'>Sorry, something went wrong! Please try your search again.</p>`)
                 throw new Error(response.statusText);
             }
@@ -120,12 +120,12 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
+        console.log('response status text: ', response.status);
             if (flightCodeList.indexOf(departureLocation1) == -1) {
                 $('.ifError').append(`<p class='errorMessage'>Please enter a valid US airport code for traveler 2.</p>`)
                 throw new Error(response.statusText);
             }
             else {
-                console.log('response status text: ', response.statusText);
                 return response.json();
             }
         }    
