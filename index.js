@@ -85,8 +85,12 @@ function getFlightResults1() {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
         .then (response => {
-            if (flightCodeList.indexOf(destination) == -1) {
-                $('.ifError').append(`<p class='errorMessage'>Please enter a valid destination airport code.</p>`)
+            if (!response.ok) {
+                $('.ifError').append(`<p class='errorMessage'>Sorry, something went wrong! Please try your search again.</p>`)
+                throw new Error(response.statusText);
+            }
+            else if (flightCodeList.indexOf(destination) == -1) {
+                $('.ifError').append(`<p class='errorMessage'>Please enter a valid US destination airport code.</p>`)
                 throw new Error(response.statusText);
             }
             else {
@@ -116,16 +120,16 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-        if (response.ok) {
             if (flightCodeList.indexOf(departureLocation1) == -1) {
-                $('.ifError').append(`<p class='errorMessage'>Please enter a valid airport code for traveler 2.</p>`)
+                $('.ifError').append(`<p class='errorMessage'>Please enter a valid US airport code for traveler 2.</p>`)
                 throw new Error(response.statusText);
             }
             else {
+                console.log('response status text: ', response.statusText);
                 return response.json();
             }
         }    
-    })
+    )
     .then(responseJson => displayFlightResults(responseJson))
     .catch(error => console.log('Flight API not working.'));
 }
@@ -150,7 +154,7 @@ fetch(url, {
 })
     .then (response => {
         if (flightCodeList.indexOf(departureLocation0) == -1) {
-            $('.ifError').append(`<p class='errorMessage'>Please enter a valid airport code for traveler 1.</p>`)
+            $('.ifError').append(`<p class='errorMessage'>Please enter a valid US airport code for traveler 1.</p>`)
             throw new Error(response.statusText);
         }
         else {
