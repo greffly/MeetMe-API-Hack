@@ -86,7 +86,7 @@ function getFlightResults1() {
     })
         .then (response => {
             if (flightCodeList.indexOf(destination) == -1) {
-                alert('Please enter a valid destination airport code.');
+                $('.ifError').append(`<p class='errorMessage'>Please enter a valid destination airport code.</p>`)
                 throw new Error(response.statusText);
             }
             else {
@@ -118,7 +118,7 @@ fetch(url, {
     .then (response => {
         if (response.ok) {
             if (flightCodeList.indexOf(departureLocation1) == -1) {
-                alert('Please enter a valid airport code for traveler 2.');
+                $('.ifError').append(`<p class='errorMessage'>Please enter a valid airport code for traveler 2.</p>`)
                 throw new Error(response.statusText);
             }
             else {
@@ -150,7 +150,7 @@ fetch(url, {
 })
     .then (response => {
         if (flightCodeList.indexOf(departureLocation0) == -1) {
-            alert('Please enter a valid airport code for traveler 1.');
+            $('.ifError').append(`<p class='errorMessage'>Please enter a valid airport code for traveler 1.</p>`)
             throw new Error(response.statusText);
         }
         else {
@@ -182,7 +182,6 @@ fetch(url, {
         
     .then (response => {
         if (flightCodeList.indexOf(departureLocation1) == -1) {
-            console.log ('Please enter a valid airport code for traveler 2.');
             throw new Error(response.statusText);
         }
         else {

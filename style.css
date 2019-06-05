@@ -138,3 +138,24 @@ img:hover, button:hover {
 h4 {
     margin: 0;
 }
+
+.errorMessage {
+    color: red;
+}
+
+.socialMedia {
+    text-align: center;
+}
+
+.shareLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 20%;
+    margin: auto auto;
+    padding: 0;
+}
+
+.shareIcon {
+    width: 30px;
+}
