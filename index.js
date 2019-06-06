@@ -9,8 +9,21 @@ const options = {
         "X-RapidAPI-Key": flightApiKey})
 };
 
+function noAvailableFlights() {
+    if ($('.flight1').length == 0 && $('.flight2').length == 0) {
+        $('.departingFlight1').html(
+            `<p class="errorMessage">There are no direct flights available for your trip at this time.</p>`
+        )
+    }
+    if ($('.flight3').length == 0 && $('.flight4').length == 0) {
+        $('.departingFlight3').html(
+            `<p class="errorMessage">There are no direct flights available for your trip at this time.</p>`
+        )
+    }
+}
+
 function displayFlightResults(responseJson) {
-    console.log('displayflightresults working');
+    //console.log('displayflightresults working');
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -26,6 +39,7 @@ function displayFlightResults(responseJson) {
 
         $('.flightResults1').show();
         $('.flightResults2').show();
+        $('.errorMessage').empty();
 
        if (departureAirport === $('.airport0').val().toUpperCase() && arrivalAirport === $('.destination').val().toUpperCase()) {
             $('.departingFlight1').append(
@@ -48,6 +62,7 @@ function displayFlightResults(responseJson) {
             )
         }
     }
+    noAvailableFlights();
     selectFlights();
 }
 
@@ -98,7 +113,7 @@ function getFlightResults1() {
             }
         })
         .then(responseJson => displayFlightResults(responseJson))
-        .catch(error => console.log('Flight API not working.'));
+        .catch(error => console.log('Flight API not working.'));    
 }
 
 function getFlightResults2() {
@@ -120,7 +135,6 @@ fetch(url, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-        console.log('response status text: ', response.status);
             if (flightCodeList.indexOf(departureLocation1) == -1) {
                 $('.ifError').append(`<p class='errorMessage'>Please enter a valid US airport code for traveler 2.</p>`)
                 throw new Error(response.statusText);
@@ -197,7 +211,6 @@ fetch(url, {
 }
 
 function getAllFlightResults() {
-    getFlightResults1();
     getFlightResults2();
     getFlightResults3();
     getFlightResults4();
