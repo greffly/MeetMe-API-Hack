@@ -20,10 +20,11 @@ function noAvailableFlights() {
             `<p class="errorMessage">There are no direct flights available for your trip at this time.</p>`
         )
     }
+    console.log($('.flight1').length, $('.flight2').length, $('.flight3').length, $('.flight4').length);
 }
 
 function displayFlightResults(responseJson) {
-    //console.log('displayflightresults working');
+    console.log('displayflightresults working');
     var departureDate;
     var arrivalDate;
     var departureAirport;
@@ -61,7 +62,6 @@ function displayFlightResults(responseJson) {
             )
         }
     }
-    noAvailableFlights();
     selectFlights();
 }
 
@@ -81,21 +81,28 @@ let date = $('.endDate').val().split('-');
 return (date[1] + ' ' + date[2] + ' ' + date[0]);
 }
 
-function getFlightResults1() {
+function getFlightResults() {
     $('.departingFlight1').empty();
+    $('.departingFlight2').empty();
+    $('.departingFlight3').empty();
+    $('.departingFlight4').empty();
+
     const departureLocation0 = $('.airport0').val().toUpperCase();
+    const departureLocation1 = $('.airport1').val().toUpperCase();
     const destination = $('.destination').val().toUpperCase();
     const departureDate = departureDateFormat();
-    const params = {
+    const returnDate = endDateFormat();
+
+    const paramsFlight1 = {
             from0: departureLocation0,
             to0: destination,
             date0: departureDate,
             pax: 1,
             cabin: 'coach'
             }
-    const queryString = formatQueryParams(params);
-    const url = flightSearchURL + '?' + queryString;
-    fetch(url, {
+    const queryString1 = formatQueryParams(paramsFlight1);
+    const urlFlight1 = flightSearchURL + '?' + queryString1;
+    fetch(urlFlight1, {
         headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
     })
         .then (response => {
@@ -112,25 +119,19 @@ function getFlightResults1() {
             }
         })
         .then(responseJson => displayFlightResults(responseJson))
-        .catch(error => console.log('Flight API not working.'));    
-}
+        .catch(error => console.log('Flight1 API not working.'));    
 
-function getFlightResults2() {
-    $('.departingFlight2').empty();
-    const departureLocation1 = $('.airport1').val().toUpperCase();
-    const destination = $('.destination').val().toUpperCase();
-    const departureDate = departureDateFormat();
-    const params = {
+    const paramsFlight2 = {
         from0: departureLocation1,
         to0: destination,
         date0: departureDate,
         pax: 1,
         cabin: 'coach'
-        }
-const queryString = formatQueryParams(params);
-const url = flightSearchURL + '?' + queryString;
+    }
+    const queryString2 = formatQueryParams(paramsFlight2);
+    const urlFlight2 = flightSearchURL + '?' + queryString2;
 
-fetch(url, {
+fetch(urlFlight2, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
@@ -148,25 +149,19 @@ fetch(url, {
         }    
     )
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => console.log('Flight API not working.'));
-}
+    .catch(error => console.log('Flight2 API not working.'));
 
-function getFlightResults3() {
-    $('.departingFlight3').empty();
-    const departureLocation0 = $('.airport0').val().toUpperCase();
-    const destination = $('.destination').val().toUpperCase();
-    const returnDate = endDateFormat();
-    const params = {
+    const paramsFlight3 = {
         from0: destination,
         to0: departureLocation0,
         date0: returnDate,
         pax: 1,
         cabin: 'coach'
-        }
-const queryString = formatQueryParams(params);
-const url = flightSearchURL + '?' + queryString;
+    }
+    const queryString3 = formatQueryParams(paramsFlight3);
+    const urlFlight3 = flightSearchURL + '?' + queryString3;
 
-fetch(url, {
+fetch(urlFlight3, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
@@ -179,28 +174,21 @@ fetch(url, {
         }
     })
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => console.log('Flight API not working.'));
-}
+    .catch(error => console.log('Flight3 API not working.'));
 
-function getFlightResults4() {
-    $('.departingFlight4').empty();
-    const departureLocation1 = $('.airport1').val().toUpperCase();
-    const destination = $('.destination').val().toUpperCase();
-    const returnDate = endDateFormat();
-    const params = {
+    const paramsFlight4 = {
         from0: destination,
         to0: departureLocation1,
         date0: returnDate,
         pax: 1,
         cabin: 'coach'
-        }
-const queryString = formatQueryParams(params);
-const url = flightSearchURL + '?' + queryString;
+    }
+    const queryString4 = formatQueryParams(paramsFlight4);
+    const urlFlight4 = flightSearchURL + '?' + queryString4;
 
-fetch(url, {
+fetch(urlFlight4, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
-        
     .then (response => {
         if (flightCodeList.indexOf(destination) == -1) {
             $('.ifError').append(`<p class='errorMessage'>Please enter a valid US destination airport code.</p>`)
@@ -211,13 +199,7 @@ fetch(url, {
         }
     })
     .then(responseJson => displayFlightResults(responseJson))
-    .catch(error => console.log('Flight API not working.'));
-}
-
-function getAllFlightResults() {
-    getFlightResults2();
-    getFlightResults3();
-    getFlightResults4();
+    .catch(error => console.log('Flight4 API not working.'));
 }
 
 function selectFlights() {
@@ -245,7 +227,7 @@ function watchForm() {
     $('.flightSearchForm').submit(event => {
         event.preventDefault();
         $('.errorMessage').empty();
-        getAllFlightResults();
+        getFlightResults();
         console.log('flight form is working');
     })
 }

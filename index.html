@@ -17,7 +17,6 @@
         <form class="flightSearchForm">
             <section class="enterDestination">
                 <label for="destinationSearch"><h3>Where Would You Like To Meet?</h3></label>
-                <datalist id="airportCode"></datalist>
                 <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" autocomplete="off" required>
             </section>
             <h3 class="originatingAirport">Where Are You Traveling From?</h3>
@@ -43,7 +42,7 @@
                 </div>
             </section>
             <section class="ifError"></section>
-            <button type="submit">Let's Go!</button>
+            <button class="letsGo" type="submit">Let's Go!</button>
         </form>
         <section class="destinationPhotos">
             <h3 class="destinationName"></h3>
@@ -53,18 +52,24 @@
         <section class="flightSearchResults">
             <section class="flightResults1">
                 <h3 class="flightResultsTitle">Flight 1 Results:</h3>
-                <ul class="flightResultsList1">
-                    <li class="departingFlight1"></li>
-                    <li class="departingFlight2"></li>
-                </ul>
+                <div class="flightResultsList1">
+                    <ul class="departingFlight1"></ul>
+                    <ul class="departingFlight2"></ul>
+                </div>
             </section>
             <section class="flightResults2">
                 <h3 class="flightResultsTitle">Flight 2 Results:</h3>
-                <ul class="flightResultsList2">
-                    <li class="departingFlight3"></li>
-                    <li class="departingFlight4"></li>
-                </ul>
+                <div class="flightResultsList2">
+                    <ul class="departingFlight3"></ul>
+                    <ul class="departingFlight4"></ul>
+                </div>
             </section>
+        </section>
+        <section class="socialMedia">
+            <ul class="socialMediaList">
+                <li class="email"><button class="buttonIcon" id="email"><img src="email.png"></button></li>
+                <li class="twitter"><button class="buttonIcon" id="twitter"><img src="twitter.png"></button></li>
+            </ul>
         </section>
         <script src="dataStore.js"></script>
         <script src="index.js"></script>
