@@ -12,19 +12,36 @@ input, label {
     display: block;
 }
 
+.pageTitle {
+    background-image: url("headerMobile.png");
+    background-size: 100% 300%;
+    background-repeat: no-repeat;
+    margin-top: 0;
+    padding-bottom: 15%;
+}
+
 input {
-    padding: 7px;
+    padding: 10px;
     margin: 5px;
     font-size: 10px;
-    border: gainsboro 1px solid;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(247, 187, 147);
 }
 
 h1 {
     font-size: 2.2em;
+    padding: 10px 0 0 0;
+    margin: 0;
 }
 
 h2 {
-    font-size: 1.4em;
+    font-size: 1em;
+    padding: 0 2% 5%;
+}
+
+.enterDestination {
+    padding: 2%;
 }
 
 .enterDestination, input {
@@ -48,6 +65,8 @@ section {
     padding: 10px 40px;
     margin: 20px;
     font-size: 1.2em;
+    border: 3px solid rgb(205, 211, 194);
+    border-radius: 4px;
 }
 
 .flightSearchResults {
@@ -66,7 +85,15 @@ section {
 }
 
 h3 {
-    margin: 1%;
+    margin: 0;
+}
+
+.whereTitle {
+    padding-top: 2%;
+}
+
+.enterDestination, .enterOrigin, .enterTripDates {
+    margin-bottom: 4%;
 }
 
 .airports {
@@ -140,6 +167,11 @@ ul li:nth-of-type(1n+10) {
 img {
     width: 95%;
     height: 100%;
+    background-color: none;
+}
+
+button {
+    background: none;
 }
 
 img:hover, button:hover {
@@ -164,12 +196,15 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 0;
 }
 
 .buttonIcon {
     width: 30px;
     height: 30px;
     padding: 0;
+    border: none;
+    background-color: none;
 }
 
 .shareLinks {
@@ -181,22 +216,53 @@ h4 {
     padding: 0;
 }
 
-.shareIcon {
-    width: 30px;
-}
-
-@media screen and (min-width:760px) {
+@media screen and (min-width:768px) {
     html {
-        font-size: 15px;
+        font-size: 16px;
     }
     input {
-        font-size: 12px;
+        font-size: 14px;
     }
     h1 {
         font-size: 2.5em;
+        padding-top: 20px;
+    }
+    h2 {
+        font-size: 1.2em;
     }
     .buttonIcon {
         width: 40px;
         height: 40px;
     }
+    .socialMedia {
+        width: 20%;
+    }
+    .pageTitle {
+        background-image: url("header.png");
+        padding-bottom: 10%;
+    }
+    .formSection {
+        margin: 10px 20px;
+    }
+    .enterDestination, .enterOrigin, .enterTripDates {
+        margin-bottom: 2%;
+    }
+    .enterDestination {
+        padding: 1%;
+    }
 }
+
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+    .pageTitle {
+        padding-bottom: 7%;
+    }
+}
+
+@media screen and (min-width: 1224px) {
+    .pageTitle {
+        padding-bottom: 5%;
+    }
+} 
