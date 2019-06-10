@@ -30,9 +30,10 @@ input {
 }
 
 h1 {
-    font-size: 2.2em;
+    font-size: 3em;
     padding: 10px 0 0 0;
     margin: 0;
+    font-family: 'Petit Formal Script', cursive;
 }
 
 h2 {
@@ -42,6 +43,12 @@ h2 {
 
 .enterDestination {
     padding: 2%;
+}
+
+.yourTrip {
+    font-family: 'Petit Formal Script', cursive;
+    padding-bottom: 0;
+    font-size: 1.5em;
 }
 
 .enterDestination, input {
@@ -64,9 +71,13 @@ section {
 .letsGo {
     padding: 10px 40px;
     margin: 20px;
-    font-size: 1.2em;
-    border: 3px solid rgb(205, 211, 194);
+    font-size: 1.3em;
+    border: 3px solid rgb(213, 235, 204);
     border-radius: 4px;
+}
+
+.letsGo:hover {
+    background-color: rgb(213, 235, 204);
 }
 
 .flightSearchResults {
@@ -102,10 +113,15 @@ h3 {
     justify-content: center;
 }
 
+.airportCodeTitle, .departureAndArrivalInfo {
+    font-size: 12px;
+}
+
 .flight1, .flight2, .flight3, .flight4, .selectedFlight {
     list-style: none;
     text-align: left;
-    border: solid 1px black;
+    border: none;
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
@@ -115,7 +131,11 @@ h3 {
 .selectFlight {
     display: block;
     align-content: center;
-    margin: 5px auto;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: rgb(219, 138, 111);
+    border-radius: 4px;
+    margin: 10px auto;
 }
 
 .selectedFlight {
@@ -124,9 +144,10 @@ h3 {
 
 .flightResults1, .flightResults2 {
     padding: 8px;
-    border: solid 1px black;
+    border: none;
+    background-color: rgb(213, 235, 204);
     display: inline-block;
-    margin: 10px;
+    margin: 20px 10px;
     align-content: center;
     width: 48%;
 }
@@ -172,6 +193,7 @@ img {
 
 button {
     background: none;
+    border: none;
 }
 
 img:hover, button:hover {
