@@ -19,10 +19,11 @@ HTML, CSS, JavaScript, jQuery, Hipmunk API and Unsplash API
 
 ## Screenshots
 ### Landing Page:
-![Landing](landingPage.png)
+![Landing Page](landingPage.png)
 ### Search Results:
-![Search Resutls](searchResults.png)
+![Search Results](searchResults.png)
 ### Selected Flights:
+![Selected Flights](selectedFlights.png)
 
 ## Future Plans
 * Implement up to date price feature.
