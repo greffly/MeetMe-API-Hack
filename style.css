@@ -143,11 +143,11 @@ h3 {
 }
 
 .flightResults1, .flightResults2 {
-    padding: 8px;
+    padding: 2px;
     border: none;
     background-color: rgb(213, 235, 204);
     display: inline-block;
-    margin: 20px 10px;
+    margin: 20px 4px;
     align-content: center;
     width: 48%;
 }
@@ -218,7 +218,7 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 0;
+    margin: 10px 0;
 }
 
 .buttonIcon {
@@ -258,6 +258,10 @@ h4 {
     }
     .socialMedia {
         width: 20%;
+    }
+    .flightResults1, .flightResults2 {
+        padding: 8px;
+        margin: 20px 10px;
     }
     .pageTitle {
         background-image: url("header.png");

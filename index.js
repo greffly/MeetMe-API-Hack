@@ -23,6 +23,20 @@ function noAvailableFlights() {
     console.log($('.flight1').length, $('.flight2').length, $('.flight3').length, $('.flight4').length);
 }
 
+/*function timeFormat() {
+    hours = arrivalDate.getHours();
+    minutes = arrivalDate.getMinutes();
+        if (hours > 12) {
+            hours -= 12;
+            //return hours + minutes +'PM';
+        } else if (hours === 0) {
+        hours = 12;
+        }
+        else if (hours < 12) {
+            return hours + minutes +'AM';
+        }
+}*/
+
 function displayFlightResults(responseJson) {
     console.log('displayflightresults working');
     var departureDate;
@@ -30,35 +44,70 @@ function displayFlightResults(responseJson) {
     var departureAirport;
     var arrivalAirport;
     var jsonDateFormat;
+    var hoursArrive;
+    var minutesArrive;
+    var arrivalTime;
+    var hoursDepart;
+    var minutesDepart;
+    var departureTime;
+
 
     for (var prop in responseJson.legs) {
         departureDate = new Date(responseJson.legs[prop].depart_iso);
         arrivalDate = new Date(`${responseJson.legs[prop].arrive_iso}`);
         departureAirport = (`${responseJson.legs[prop].from_code}`);
         arrivalAirport = (`${responseJson.legs[prop].to_code}`);
-        jsonDateFormat = (('0' + (departureDate.getMonth() + 1)) + '/' + departureDate.getDate() + '/' + departureDate.getFullYear());   
+        jsonDateFormat = (('0' + (departureDate.getMonth() + 1)) + '/' + departureDate.getDate() + '/' + departureDate.getFullYear()); 
+        hoursArrive = arrivalDate.getHours();
+        minutesArrive = arrivalDate.getMinutes();
+        hoursDepart = departureDate.getHours();
+        minutesDepart = departureDate.getMinutes();
+
+        if (minutesArrive < 6) {
+            minutesArrive += '0';
+        }
+        if (hoursArrive > 12) {
+            hoursArrive -= 12;
+            arrivalTime = hoursArrive + ':' + minutesArrive + ' PM';
+        } else if (hoursArrive === 0) {
+            hoursArrive = 12;
+            arrivalTime = hoursArrive + ':' + minutesArrive + ' AM';
+        }
+
+        if (minutesDepart < 6){
+            minutesDepart += '0';
+        }
+        if (hoursDepart > 12) {
+            hoursDepart -= 12;
+            departureTime = hoursDepart + ':' + minutesDepart + ' PM';
+        } else if (hoursDepart === 0) {
+            hoursDepart = 12;
+            departureTime = hoursDepart + ':' + minutesDepart + ' AM';
+        }
 
         $('.flightResults1').show();
         $('.flightResults2').show();
 
+        //console.log(timeFormat());
+
        if (departureAirport === $('.airport0').val().toUpperCase() && arrivalAirport === $('.destination').val().toUpperCase()) {
             $('.departingFlight1').append(
-                `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
+                `<li class="flight1"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureTime}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalTime}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
         if (departureAirport === $('.destination').val().toUpperCase() && arrivalAirport === $('.airport0').val().toUpperCase()) {
             $('.departingFlight2').append(
-                `<li class="flight2"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
+                `<li class="flight2"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureTime}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalTime}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
         if (departureAirport === $('.airport1').val().toUpperCase() && arrivalAirport === $('.destination').val().toUpperCase()) {
             $('.departingFlight3').append(
-                `<li class="flight3"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
+                `<li class="flight3"><h4 class="airportCodeTitle">Departing Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureTime}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalTime}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
         if (departureAirport === $('.destination').val().toUpperCase() && arrivalAirport === $('.airport1').val().toUpperCase()) {
             $('.departingFlight4').append(
-                `<li class="flight4"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureDate.getHours()}:${departureDate.getUTCMinutes()}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalDate.getHours()}:${arrivalDate.getMinutes()}<br><button class="selectFlight">Select</button></p></li>`
+                `<li class="flight4"><h4 class="airportCodeTitle">Return Flight ${departureAirport} to ${arrivalAirport}</h4><p class="departureAndArrivalInfo">Leaving on: ${jsonDateFormat} at ${departureTime}<br> Arriving at destination on: ${jsonDateFormat} at ${arrivalTime}<br><button class="selectFlight">Select</button></p></li>`
             )
         }
     }
