@@ -22,6 +22,7 @@ input, label {
 
 input {
     padding: 10px;
+    font-family: Montserrat;
     margin: 5px;
     font-size: 10px;
     border: none;
@@ -117,6 +118,10 @@ h3 {
     font-size: 12px;
 }
 
+.airportCodeTitle {
+    text-align: center;
+}
+
 .flight1, .flight2, .flight3, .flight4, .selectedFlight {
     list-style: none;
     text-align: left;
@@ -128,18 +133,22 @@ h3 {
     padding: 5px;
 }
 
+.selectedFlight button {
+    background-color: rgb(219, 138, 111);
+}
+
 .selectFlight {
     display: block;
     align-content: center;
     padding: 5px 10px;
     font-size: 14px;
-    background-color: rgb(219, 138, 111);
+    border: 3px solid rgb(219, 138, 111);
     border-radius: 4px;
     margin: 10px auto;
 }
 
-.selectedFlight {
-    background-color: gainsboro;
+.selectFlight:hover {
+    background-color: rgb(219, 138, 111);
 }
 
 .flightResults1, .flightResults2 {
@@ -279,8 +288,13 @@ h4 {
     .selectFlight {
         padding: 10px 20px;
     }
-    .airportCodeTitle, .departureAndArrivalInfo {
+    .departureAndArrivalInfo {
         font-size: 16px;
+        line-height: 1.5;
+    }
+    .airportCodeTitle {
+        font-size: 18px;
+        font-weight: bold;
     }
 }
 
