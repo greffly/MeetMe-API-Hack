@@ -9,6 +9,7 @@ const options = {
         "X-RapidAPI-Key": flightApiKey})
 };
 
+/*
 function noAvailableFlights() {
     if ($('.flight1').length == 0 && $('.flight2').length == 0) {
         $('.departingFlight1').html(
@@ -22,6 +23,7 @@ function noAvailableFlights() {
     }
     console.log($('.flight1').length, $('.flight2').length, $('.flight3').length, $('.flight4').length);
 }
+*/
 
 function displayFlightResults(responseJson) {
     console.log('displayflightresults working');
@@ -37,7 +39,7 @@ function displayFlightResults(responseJson) {
     var minutesDepart;
     var departureTime;
 
-
+    //this is the for loop I use to isolate and access each leg of a flight
     for (var prop in responseJson.legs) {
         departureDate = new Date(responseJson.legs[prop].depart_iso);
         arrivalDate = new Date(`${responseJson.legs[prop].arrive_iso}`);
@@ -49,6 +51,7 @@ function displayFlightResults(responseJson) {
         hoursDepart = departureDate.getHours();
         minutesDepart = departureDate.getMinutes();
 
+        //this code converts military time to standard time with AM and PM tags
         if (minutesArrive < 6) {
             minutesArrive += '0';
         }
@@ -140,6 +143,7 @@ function getFlightResults() {
     const departureDate = departureDateFormat();
     const returnDate = endDateFormat();
 
+    //I am currently declaring separate params for each flight leg. I plan to come back and consolidate these into one API call.
     const paramsFlight1 = {
             from0: departureLocation0,
             to0: destination,
@@ -182,11 +186,7 @@ fetch(urlFlight2, {
     headers: {"X-RapidAPI-Key": "37815a5062mshb00a5a1e7f13f85p1e7925jsn183b12ff34e5"}
 })
     .then (response => {
-            if (response.status == 503) {
-                $('.ifError').append(`<p class='errorMessage'>Sorry, something went wrong! Please try your search again.</p>`)
-                throw new Error(response.statusText);
-            }
-            else if (flightCodeList.indexOf(departureLocation1) == -1) {
+            if (flightCodeList.indexOf(departureLocation1) == -1) {
                 $('.ifError').append(`<p class='errorMessage'>Please enter a valid US airport code for traveler 2.</p>`)
                 throw new Error(response.statusText);
             }
@@ -250,24 +250,25 @@ fetch(urlFlight4, {
 }
 
 function selectFlights() {
+    //this function selects the user selected flight, and deletes all other flights for that trip, allowing the user to select one departing and one returning flight.
     $('.flight1 button').click(event => {
-        document.getElementById('button1').innerHTML = "Selected!";
         $(event.target).closest('li').removeClass('flight1').addClass('selectedFlight');
+        event.target.innerHTML = "Selected!";
         $('.flight1').hide();
     })
     $('.flight2 button').click(event => {
-        document.getElementById('button2').innerHTML = "Selected!";
         $(event.target).closest('li').removeClass('flight2').addClass('selectedFlight');
+        event.target.innerHTML = "Selected!";
         $('.flight2').hide();
     })
     $('.flight3 button').click(event => {
-        document.getElementById('button3').innerHTML = "Selected!";
         $(event.target).closest('li').removeClass('flight3').addClass('selectedFlight');
+        event.target.innerHTML = "Selected!";
         $('.flight3').hide();
     })
     $('.flight4 button').click(event => {
-        document.getElementById('button4').innerHTML = "Selected!";
         $(event.target).closest('li').removeClass('flight4').addClass('selectedFlight');
+        event.target.innerHTML = "Selected!";
         $('.flight4').hide();
     })
 }
