@@ -83,7 +83,7 @@ section {
 
 .flightSearchResults {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     margin-left: 0;
     margin-right: 0;
     width: 100%;

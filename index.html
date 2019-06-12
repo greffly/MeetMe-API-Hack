@@ -16,11 +16,11 @@
         </header>
         <form class="flightSearchForm">
             <h3>Where Would You Like To Meet?</h3>
-            <section class="enterDestination">
+            <section class="enterDestination" role="enterDestination">
                 <input class="destination" type="text" placeholder="SFO" list="airportCode" name="airportCode" autocomplete="off" required>
             </section>
             <h3 class="originatingAirport">Where Are You Traveling From?</h3>
-            <section class="enterOrigin">
+            <section class="enterOrigin" role="enterOrigin">
                 <div class="formSection">
                     <label>Traveler 1</label>
                     <input class="airport0" type="text" placeholder="LAX" id="airportCode" autocomplete="off" required>
@@ -31,7 +31,7 @@
                 </div>
             </section>
             <h3 class="whereTitle">When Are You Going?</h3>
-            <section class="enterTripDates">
+            <section class="enterTripDates" role="enterTripDates">
                 <div class="formSection">
                     <label>Leaving On</label>
                     <input class="startDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
@@ -41,23 +41,23 @@
                     <input class="endDate" type="date" id="dates" placeholder="mm/dd/yyyy" required>
                 </div>
             </section>
-            <section class="ifError"></section>
+            <section class="ifError" role="ifError"></section>
             <button class="letsGo" type="submit">Let's Go!</button>
         </form>
-        <section class="destinationPhotos">
+        <section class="destinationPhotos" role="destinationPhotos" aria-live="polite">
             <h3 class="destinationName"></h3>
                 <ul class="destinationPhotoList">
                 </ul>
         </section>
-        <section class="flightSearchResults">
-            <section class="flightResults1">
+        <section class="flightSearchResults" role="flightSearchResults" aria-live="polite">
+            <section class="flightResults1" role="flightResults">
                 <h3 class="flightResultsTitle">Flight 1 Results:</h3>
                 <div class="flightResultsList1">
                     <ul class="departingFlight1"></ul>
                     <ul class="departingFlight2"></ul>
                 </div>
             </section>
-            <section class="flightResults2">
+            <section class="flightResults2" role="flightResults">
                 <h3 class="flightResultsTitle">Flight 2 Results:</h3>
                 <div class="flightResultsList2">
                     <ul class="departingFlight3"></ul>
@@ -65,7 +65,7 @@
                 </div>
             </section>
         </section>
-        <section class="socialMedia">
+        <section class="socialMedia" role="socialMedia">
             <ul class="socialMediaList">
                 <li class="email"><button class="buttonIcon" id="email"><a href="mailto:%20?subject=Check%20out%20MeetMe!&body=Let's%20plan%20a%20trip!%20https://greffly.github.io/MeetMe-API-Hack/"><img src="email.png"></a></button></li>
                 <li class="twitter"><button class="buttonIcon" id="twitter"><a href="https://twitter.com/intent/tweet?text=Check%20out%20MeetMe!%20https://greffly.github.io/MeetMe-API-Hack/"><img src="twitter.png"></a></button></li>
