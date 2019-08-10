@@ -25,6 +25,10 @@ HTML, CSS, JavaScript, jQuery, Hipmunk API and Unsplash API
 ### Selected Flights:
 ![Selected Flights](selectedFlights.png)
 
+## Struggles
+* Parsing the JSON was the hardest part of this project for me, as it was nested fairly complexly, and needed to be transformed to be readable. The reason price and booking links are not on the site, is the information is nested in another object, linked by a third object, all connected by two different ids. At the time of creating this project (about 2 months into JavaScript), this hurdle became too time-consuming to tackle, and has been promoted to "future feature!".
+* Running API calls for 4 different flight legs and having them return information to the correct space on the page was a big hurdle during this project. Although I was able to get it working by literally writing 4 different API calls, I have plans to go back and clean this code up so it is one call with 4 different outcomes.
+
 ## Future Plans
 * Implement up to date price feature.
 * Add autocomplete for airport code and cities, so users don't have to memorize airport codes.
